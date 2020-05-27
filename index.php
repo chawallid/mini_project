@@ -6,12 +6,31 @@
     while(! feof($file))
     {
         $data = fgetcsv($file);
-        array_push($dataPoints, array("x" => intval($data[2]) , "y" => intval($data[4])));
+        $endDate = array(
+            'month' => $data[1],
+            'day' => $data[0],
+            'year' => $data[2],    
+        );
+        $date = DateTime::createFromFormat('d/m/Y', vsprintf('%s/%s/%s', [
+            $endDate['day'],
+            $endDate['month'],
+            $endDate['year'],
+        ]));
+        
+        echo $date->format('d/m/Y');
+        // // date_date_set($date_format,$data[2],$data[1],$data[0]);
+        // // $tmp = date_format($date_format,"Y/m/d");
+        // $year = (string)$data[2];
+        // $month = (string)$data[1];
+
+        // print_r($year+"-"+$month);
+        // array_push($dataPoints, array("x" => new Date($data[2],$data[1],$data[0]) , "y" => intval($data[4])));
     }
-    fclose($file);
+    // print_r($dataPoints);
+    // fclose($file);
 ?>
 
-<!DOCTYPE HTML>
+<!-- <!DOCTYPE HTML>
 <html>
 <head>
 <script>    
@@ -58,5 +77,5 @@ chart.render();
 <div id="chartContainer" style="height: 370px; width: 100%;"></div>
 <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
 </body> 
-</html>      
+</html>       -->
 
