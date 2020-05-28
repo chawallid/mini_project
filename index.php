@@ -3,30 +3,19 @@
     $dataPoints = array();
     $data = array();
     $file = fopen("TH2.csv","r");
+    // $d=mktime(11, 14, 54, 8, 12, 2014);
+    // echo "Created date is " . date("Y-m-d h:i:sa", $d);
     while(! feof($file))
     {
         $data = fgetcsv($file);
-        $endDate = array(
-            'month' => $data[1],
-            'day' => $data[0],
-            'year' => $data[2],    
-        );
-        $date = DateTime::createFromFormat('d/m/Y', vsprintf('%s/%s/%s', [
-            $endDate['day'],
-            $endDate['month'],
-            $endDate['year'],
-        ]));
-        
-        echo $date->format('d/m/Y');
-        // // date_date_set($date_format,$data[2],$data[1],$data[0]);
-        // // $tmp = date_format($date_format,"Y/m/d");
-        // $year = (string)$data[2];
-        // $month = (string)$data[1];
+        // date_date_set($date_format,$data[2],$data[1],$data[0]);
+      
+        $d = mktime( 8, 12, $data[2]);
 
-        // print_r($year+"-"+$month);
-        // array_push($dataPoints, array("x" => new Date($data[2],$data[1],$data[0]) , "y" => intval($data[4])));
+ 
+        array_push($dataPoints, array("x" => date("Y-m-d", $d) , "y" => intval($data[4])));
     }
-    // print_r($dataPoints);
+    print_r($dataPoints);
     // fclose($file);
 ?>
 
