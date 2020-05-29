@@ -36,7 +36,7 @@ public class hello {
                 head_str = "West";
                 pos[0] = pos[0] - Array_A[i];
             }
-            path.add(pos);
+            path.add(new int[] pos);
             System.out.print(" -> ");
             System.out.print(Arrays.toString(pos));
             System.out.print("  ");
