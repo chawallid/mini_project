@@ -3,24 +3,31 @@
     $dataPoints = array();
     $data = array();
     $file = fopen("TH2.csv","r");
+    $tmp_date = "" ; 
     // $d=mktime(11, 14, 54, 8, 12, 2014);
     // echo "Created date is " . date("Y-m-d h:i:sa", $d);
     while(! feof($file))
     {
         $data = fgetcsv($file);
-        // date_date_set($date_format,$data[2],$data[1],$data[0]);
-      
-         
-        $d = mktime( 8, 12, $data[2]);
+        $day = $data[0]; 
+        $month = $data[1];
+        $year =$data[2];
+        // $date = $month+" "+$day+" "+$year;
+        $tmp_date = $month." ".$day." ".$year ; 
+        // echo $tmp_date;
 
+  
+        // $date = 'Dec 25 2099';
+        // print_r(date('d/m/Y', strtotime($tmp_date)));
+        // $date = mktime( 8, 12, $int_years);
  
-        array_push($dataPoints, array("x" => date("Y-m-d", $d) , "y" => intval($data[4])));
+        array_push($dataPoints, array("x" => new Date('d/m/Y', strtotime($tmp_date)) , "y" => intval($data[4])));
+
     }
-    print_r($dataPoints);
-    // fclose($file);
+    
 ?>
 
-<!-- <!DOCTYPE HTML>
+<!DOCTYPE HTML>
 <html>
 <head>
 <script>    
@@ -52,7 +59,7 @@ var chart = new CanvasJS.Chart("chartContainer", {
 	data: [{
 		type: "spline",
 		markerSize: 5,
-		xValueFormatString: "####",
+		xValueFormatString: "DD-MM-YY",
 		yValueFormatString: "00.0",
 		dataPoints: <?php echo json_encode($dataPoints, JSON_NUMERIC_CHECK); ?>
 	}]
@@ -67,5 +74,5 @@ chart.render();
 <div id="chartContainer" style="height: 370px; width: 100%;"></div>
 <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
 </body> 
-</html>       -->
+</html>       
 
